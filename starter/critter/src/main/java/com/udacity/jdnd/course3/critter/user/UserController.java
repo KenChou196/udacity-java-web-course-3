@@ -98,7 +98,13 @@ public class UserController {
                 .map(customer -> convertCustomerToCustomerDTO(customer))
                 .collect(Collectors.toList());
     }
-
+    @GetMapping("/employee")
+    public  List<EmployeeDTO> getAllEmployees() {
+        List<Employee> employees = employeeService.findAllEmployees();
+        return employees.stream()
+                .map(employee -> convertEmployeeToEmployeeDTO(employee))
+                .collect(Collectors.toList());
+    }
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId) {
         try {
